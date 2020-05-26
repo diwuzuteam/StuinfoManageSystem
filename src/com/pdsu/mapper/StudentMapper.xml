@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pdsu.mapper.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.pdsu.po.Student" >
+    <id column="su_id" property="suId" jdbcType="VARCHAR" />
+    <result column="su_name" property="suName" jdbcType="VARCHAR" />
+    <result column="su_sex" property="suSex" jdbcType="VARCHAR" />
+    <result column="su_dm" property="suDm" jdbcType="VARCHAR" />
+    <result column="su_class" property="suClass" jdbcType="VARCHAR" />
+    <result column="su_email" property="suEmail" jdbcType="VARCHAR" />
+    <result column="su_phone" property="suPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    su_id, su_name, su_sex, su_dm, su_class, su_email, su_phone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where su_id = #{suId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllStudent" resultMap="BaseResultMap" parameterType="com.pdsu.po.Student">
+    select
+    <include refid="Base_Column_List" />
+    from student
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where su_id = #{suId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pdsu.po.Student" >
+    insert into student (su_id, su_name, su_sex,
+      su_dm, su_class, su_email, 
+      su_phone)
+    values (#{suId,jdbcType=VARCHAR}, #{suName,jdbcType=VARCHAR}, #{suSex,jdbcType=VARCHAR},
+      #{suDm,jdbcType=VARCHAR}, #{suClass,jdbcType=VARCHAR}, #{suEmail,jdbcType=VARCHAR}, 
+      #{suPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pdsu.po.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="suId != null" >
+        su_id,
+      </if>
+      <if test="suName != null" >
+        su_name,
+      </if>
+      <if test="suSex != null" >
+        su_sex,
+      </if>
+      <if test="suDm != null" >
+        su_dm,
+      </if>
+      <if test="suClass != null" >
+        su_class,
+      </if>
+      <if test="suEmail != null" >
+        su_email,
+      </if>
+      <if test="suPhone != null" >
+        su_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="suId != null" >
+        #{suId,jdbcType=VARCHAR},
+      </if>
+      <if test="suName != null" >
+        #{suName,jdbcType=VARCHAR},
+      </if>
+      <if test="suSex != null" >
+        #{suSex,jdbcType=VARCHAR},
+      </if>
+      <if test="suDm != null" >
+        #{suDm,jdbcType=VARCHAR},
+      </if>
+      <if test="suClass != null" >
+        #{suClass,jdbcType=VARCHAR},
+      </if>
+      <if test="suEmail != null" >
+        #{suEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="suPhone != null" >
+        #{suPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pdsu.po.Student" >
+    update student
+    <set >
+      <if test="suName != null" >
+        su_name = #{suName,jdbcType=VARCHAR},
+      </if>
+      <if test="suSex != null" >
+        su_sex = #{suSex,jdbcType=VARCHAR},
+      </if>
+      <if test="suDm != null" >
+        su_dm = #{suDm,jdbcType=VARCHAR},
+      </if>
+      <if test="suClass != null" >
+        su_class = #{suClass,jdbcType=VARCHAR},
+      </if>
+      <if test="suEmail != null" >
+        su_email = #{suEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="suPhone != null" >
+        su_phone = #{suPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where su_id = #{suId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pdsu.po.Student" >
+    update student
+    set su_name = #{suName,jdbcType=VARCHAR},
+      su_sex = #{suSex,jdbcType=VARCHAR},
+      su_dm = #{suDm,jdbcType=VARCHAR},
+      su_class = #{suClass,jdbcType=VARCHAR},
+      su_email = #{suEmail,jdbcType=VARCHAR},
+      su_phone = #{suPhone,jdbcType=VARCHAR}
+    where su_id = #{suId,jdbcType=VARCHAR}
+  </update>
+</mapper>
