@@ -46,9 +46,8 @@
                 </div>
             </div>
             <div class="pull-left">
-                <button class="btn btn-success" data-backdrop="static">新建
-                </button>
-                <button class="btn btn-danger">删除</button>
+<%--                <button class="btn btn-success" data-backdrop="static" id="selectAll" onclick="selectAll()">全选</button>--%>
+                <button class="btn btn-danger" onclick="deleteSus()">批量删除</button>
             </div>
         </div>
 
@@ -57,7 +56,7 @@
             <thead>
             <tr class="">
                 <td class="text-center">
-                    <input type="checkbox"></td>
+                    <input type="checkbox" onclick="selectAll()"></td>
                 <th>序号</th>
                 <th>学生ID号</th>
                 <th>姓名</th>
@@ -76,7 +75,7 @@
                        varStatus="pageInfo">
                 <tr>
                     <td class="text-center">
-                        <input type="checkbox"></td>
+                        <input type="checkbox" name="checkbox" value="${student.suId}"></td>
                     <td class="text-center">${pageInfo.count}</td>
                     <td>${student.suId}</td>
                     <td>${student.suName}</td>
@@ -89,38 +88,88 @@
                         <button class="btn  btn-xs btn-info"
                                 style="color: white;"><span
                                 class="glyphicon glyphicon-list"></span>
-                            <a href="goViewStudent/${student.suId}.action">
+                            <a href="${pageContext.request.contextPath}/student/goViewStudent/${student.suId}.action">
                                 详情</a></button>
                         <button class="btn  btn-xs btn-success"><span
                                 class="glyphicon glyphicon-user"></span>
-                            <a href="goEditStudent/${student.suId}.action">
+                            <a href="${pageContext.request.contextPath}/student/goEditStudent/${student.suId}.action">
                                 编辑</a></button>
 
                         <button class="btn  btn-xs btn-danger ticketDel"><span
                                 class="glyphicon glyphicon-user">
-                        <a href="deleteStudentById/${student.suId}.action">删除</a>
+                        <a href="javascript:void(0)" onclick="deleteReg('${student.suId}')">删除</a>
                     </span></button>
-
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
-
-
 </template:user_backend>
+<%--使用ajax异步删除后刷新--%>
 <script>
     var ItemId = "Item1_2";
-    //使用jq弹出一个是否删除记录的提示框
-    $(document).ready(function () {
-        $(".ticketDel").click(function () {
-            if (confirm("确定删除学生记录?")) {
-                return true;
-            }
-            return false;
-        });
-    });
-
+    function deleteReg(suId){
+        if (confirm("确定删除此学生信息？")){
+            $.ajax({
+                type:"post",
+                url:"${pageContext.request.contextPath}/student/deleteStudentById.action",
+                data:{
+                    "suId":suId
+                },
+                success:function(){
+                    window.location.reload();
+                },
+                error:function () {
+                    window.location.reload();
+                }
+            })
+        }else{
+          return false;
+        }
+    }
 </script>
-
+<%--批量删除按钮实现--%>
+<script>
+    var ItemId = "Item1_2";
+    function deleteSus() {
+        var ids = [];
+        $('input[name="checkbox"]:checked').each(function(){
+            ids.push($(this).val());
+        });
+        if (ids.length == 0){
+            alert("请选中要删除的学生！")
+        }else{
+            if (confirm("确定删除多个学生信息吗？")){
+                $.ajax({
+                    dataType:'text',
+                    type:"post",
+                    url:"${pageContext.request.contextPath}/student/deleteStudents.action",
+                    data:{ids:ids},
+                    success:function(){
+                        window.location.reload();
+                    },
+                    error:function () {
+                        window.location.reload();
+                    }
+                })
+            }else{
+                return false;
+            }
+        }
+    }
+</script>
+<%--实现全选和取消全选--%>
+<script>
+    function selectAll(){
+        $("input[type='checkbox']").each( function() {
+            if($(this).prop("checked")==true) {
+                $("input[type='checkbox']").prop('checked', true);
+                return;
+            } else {
+                $("input[type='checkbox']").prop('checked', false);
+                return;
+            }
+        });
+    }
+</script>

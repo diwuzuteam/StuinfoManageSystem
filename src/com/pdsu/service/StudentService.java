@@ -1,7 +1,6 @@
 package com.pdsu.service;
 
 import com.github.pagehelper.PageInfo;
-import com.pdsu.po.Manager;
 import com.pdsu.po.Student;
 
 import java.util.List;
@@ -40,4 +39,9 @@ public interface StudentService {
      * 删除学生信息
      */
     public void deleteStudent(String suId)throws Exception;
+    /**
+     * 动态查询学生信息并分页
+     */
+    public PageInfo<Student> dynamicQuery(int page,int size,Student student)throws Exception;
+
 }

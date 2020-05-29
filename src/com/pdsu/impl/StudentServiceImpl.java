@@ -59,4 +59,12 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.deleteByPrimaryKey(suId);
     }
 
+    @Override
+    public PageInfo<Student> dynamicQuery(int page, int size,Student student) throws Exception {
+        PageHelper.startPage(page, size);
+        List<Student> list = (List<Student>) studentMapper.dynamicQuery(student);
+        PageInfo<Student> pageInfo = new PageInfo<Student>(list);
+        return pageInfo;
+    }
+
 }

@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
+
 /**
  * @author xxy
  * @Description: 学生的controller
  * @Version 1.0
  */
 @Controller
-@RequestMapping("/student")
+@RequestMapping("student")
 public class StudentController {
     @Autowired
     public StudentServiceImpl studentService;
@@ -57,8 +58,8 @@ public class StudentController {
     /**
      * 更新学生信息
      */
-    @RequestMapping(value = "/updateStudent" , method = RequestMethod.PUT)
-    public String updateStudent(Student student,String suId) throws Exception {
+    @RequestMapping(value = "/updateStudent",method = RequestMethod.POST)
+   public String updateStudent(String suId,Student student) throws Exception {
         studentService.updateStudent(suId,student);
         return "redirect:showAllStudents.action";
     }
@@ -81,8 +82,7 @@ public class StudentController {
     /**
      * 判断账号是否存在
      */
-    @RequestMapping(value = "/exitStudentId")
-    @ResponseBody
+    @RequestMapping(value = "/exitStudentId",method = RequestMethod.POST)
     public String exitStudentId(String suId) throws Exception {
         Student student = studentService.checkSuIdIsExist(suId);
         String msg = "";
@@ -96,9 +96,42 @@ public class StudentController {
     /**
      * 删除学生信息
      */
-    @RequestMapping(value = "/deleteStudentById/{suId}")
-    public void deleteStudentById(@PathVariable("suId") String suId)throws Exception{
+    @RequestMapping(value = "/deleteStudentById",method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteStudentById(String suId)throws Exception{
         studentService.deleteStudent(suId);
     }
+    /**
+     * 跳转到学生查询页面
+     */
+    @RequestMapping("/goQueryStudent")
+    public ModelAndView goQueryStudent(ModelAndView modelAndView){
+        modelAndView.setViewName("queryStudent");
+        return modelAndView;
+    }
+    /**
+     * 批量删除学生信息
+     */
+    @RequestMapping(value = "/deleteStudents",method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteStudents(@RequestParam(value = "ids[]",required = false) String[] ids)throws Exception{
+        for (String id:ids) {
+            studentService.deleteStudent(id);
+        }
+    }
+    /**
+     * 动态查询学生信息，并分页
+     */
+    @RequestMapping(value = "/dynamicQuery",method = RequestMethod.POST)
+    public ModelAndView dynamicQuery(@RequestParam(value = "page", defaultValue = "1") int page,
+                                        @RequestParam(value = "size", defaultValue = "10") int size,
+                                        Student student,ModelAndView modelAndView) throws Exception {
 
+        //默认每页记录
+        PageInfo<Student> pageInfo = studentService.dynamicQuery(page, size, student);
+        student.getSuId();
+        modelAndView.addObject("pageInfo", pageInfo);
+        modelAndView.setViewName("queryStudent");
+        return  modelAndView;
+    }
 }

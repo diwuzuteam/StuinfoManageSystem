@@ -2,13 +2,13 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <template:user_backend htmlTitle="编辑学生信息" bodyTitle="编辑学生信息">
     <div class="panel-body">
-        <form action="student/updateStudent.action" method="post" enctype="multipart/form-data">
-            <fieldset>
+        <form action="${pageContext.request.contextPath}/student/updateStudent.action" method="post">
+<%--            <fieldset>--%>
                 <div class="form-group ">
                     <label class="control-label">学号</label>
                     <input type="text" style="width: 340px;"
                            class="form-control" placeholder="请输入学生学号"
-                           name="suId" value="${student.suId}">
+                           disabled name="suId" value="${student.suId}">
                 </div>
 
                 <div class="form-group ">
@@ -59,7 +59,7 @@
                     <button class="btn"  style="background-color:#0b7285;color: white" type="submit">提交</button>
                     <a href="javascript:history.back(-1)"  class="btn" style="background-color:#0b7285;color: white" role="button">返回</a>
                 </p>
-            </fieldset>
+<%--            </fieldset>--%>
         </form>
     </div>
     <script>

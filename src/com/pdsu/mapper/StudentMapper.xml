@@ -24,6 +24,22 @@
     <include refid="Base_Column_List" />
     from student
   </select>
+  <select id="dynamicQuery" resultMap="BaseResultMap" parameterType="com.pdsu.po.Student">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    <where>
+      <if test="suId != null and suId != ''">
+            AND su_id LIKE '%${suId}%'
+      </if>
+      <if test="suName != null and suName != ''">
+            AND su_name LIKE '%${suName}%'
+      </if>
+      <if test="suClass != null and suClass != ''">
+             AND su_class LIKE '%${suClass}%'
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from student
     where su_id = #{suId,jdbcType=VARCHAR}

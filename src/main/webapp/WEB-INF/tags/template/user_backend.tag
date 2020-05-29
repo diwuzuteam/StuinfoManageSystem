@@ -36,7 +36,7 @@
                             <li><a href="${pageContext.request.contextPath}/student/showAllStudents.action"
                                    id="Item1_2">查看学生信息
                             </a></li>
-                            <li><a href="${pageContext.request.contextPath}/student/query" id="Item1_3">
+                            <li><a href="${pageContext.request.contextPath}/student/goQueryStudent.action" id="Item1_3">
                                 查询学生信息</a></li>
                         </ul>
                     </li>

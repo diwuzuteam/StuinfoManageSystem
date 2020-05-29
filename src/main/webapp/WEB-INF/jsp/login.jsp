@@ -121,9 +121,7 @@
     function show(){
         document.getElementById("login").style.display="none";//隐藏
         document.getElementById("signup").style.display="block";
-        // $('link').css('display', 'none');
     }
-
 </script>
 
 </head>

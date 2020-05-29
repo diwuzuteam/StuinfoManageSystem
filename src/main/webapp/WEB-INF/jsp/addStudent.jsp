@@ -77,6 +77,7 @@
     <script>
         function a2(){
             $.ajax({
+                type:'post',
                 url:"${pageContext.request.contextPath}/student/exitStudentId.action",
                 data:{'suId':$("#suId").val()},
                 success:function (data) {
@@ -104,41 +105,6 @@
         }
     </script>
 <%--非空校验--%>
-   <%-- <script>
-        function checkNull() {
-            if ($("#suId").val() == "" || $("#suId").val() == undefined){
-                alert("请输入学号!");
-                $("#suId").focus();
-                return false;
-            }else if ($("#suName").val() == "" || $("#suName").val() == undefined){
-                alert("请输入姓名!")
-                $("#suName").focus();
-                return false;
-            }else if ($("#suSex").val() == "" || $("#suSex").val() == undefined){
-                alert("请选择性别!")
-                $("#suSex").focus();
-                return false;
-            }else if ($("#suClass").val() == "" || $("#suClass").val() == undefined){
-                alert("请输入班级!")
-                $("#suClass").focus();
-                return false;
-            }else if ($("#suPhone").val() == "" || $("#suPhone").val() == undefined){
-                alert("请输入电话!")
-                $("#suPhone").focus();
-                return false;
-            }else if ($("#suDm").val() == "" || $("#suDm").val() == undefined){
-                alert("请输入宿舍号!")
-                $("#suDm").focus();
-                return false;
-            }else if ($("#suEmail").val() == "" || $("#suEmail").val() == undefined){
-                alert("请输入电子邮件!)
-                $("#suEmail").focus();
-                return false;
-            }else{
-                return true;
-            }
-        }
-    </script>--%>
     <script type="text/javascript">
         function myCheck()
         {
