@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.pdsu.impl.StudentServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.037 s <<< FAILURE! - in com.pdsu.impl.StudentServiceImplTest
+testDynamicQuery(com.pdsu.impl.StudentServiceImplTest)  Time elapsed: 0.009 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/pdsu/po/Student
+	at com.pdsu.impl.StudentServiceImplTest.testDynamicQuery(StudentServiceImplTest.java:21)
+Caused by: java.lang.ClassNotFoundException: com.pdsu.po.Student
+	at com.pdsu.impl.StudentServiceImplTest.testDynamicQuery(StudentServiceImplTest.java:21)
+

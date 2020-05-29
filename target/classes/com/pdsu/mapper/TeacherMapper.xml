@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pdsu.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.pdsu.po.Teacher" >
+    <id column="th_no" property="thNo" jdbcType="VARCHAR" />
+    <result column="th_name" property="thName" jdbcType="VARCHAR" />
+    <result column="th_sex" property="thSex" jdbcType="VARCHAR" />
+    <result column="th_address" property="thAddress" jdbcType="VARCHAR" />
+    <result column="th_phone" property="thPhone" jdbcType="VARCHAR" />
+    <result column="th_tittle" property="thTittle" jdbcType="VARCHAR" />
+    <result column="th_email" property="thEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    th_no, th_name, th_sex, th_address, th_phone, th_tittle, th_email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where th_no = #{thNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from teacher
+    where th_no = #{thNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pdsu.po.Teacher" >
+    insert into teacher (th_no, th_name, th_sex, 
+      th_address, th_phone, th_tittle, 
+      th_email)
+    values (#{thNo,jdbcType=VARCHAR}, #{thName,jdbcType=VARCHAR}, #{thSex,jdbcType=VARCHAR}, 
+      #{thAddress,jdbcType=VARCHAR}, #{thPhone,jdbcType=VARCHAR}, #{thTittle,jdbcType=VARCHAR}, 
+      #{thEmail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pdsu.po.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="thNo != null" >
+        th_no,
+      </if>
+      <if test="thName != null" >
+        th_name,
+      </if>
+      <if test="thSex != null" >
+        th_sex,
+      </if>
+      <if test="thAddress != null" >
+        th_address,
+      </if>
+      <if test="thPhone != null" >
+        th_phone,
+      </if>
+      <if test="thTittle != null" >
+        th_tittle,
+      </if>
+      <if test="thEmail != null" >
+        th_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="thNo != null" >
+        #{thNo,jdbcType=VARCHAR},
+      </if>
+      <if test="thName != null" >
+        #{thName,jdbcType=VARCHAR},
+      </if>
+      <if test="thSex != null" >
+        #{thSex,jdbcType=VARCHAR},
+      </if>
+      <if test="thAddress != null" >
+        #{thAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="thPhone != null" >
+        #{thPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="thTittle != null" >
+        #{thTittle,jdbcType=VARCHAR},
+      </if>
+      <if test="thEmail != null" >
+        #{thEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pdsu.po.Teacher" >
+    update teacher
+    <set >
+      <if test="thName != null" >
+        th_name = #{thName,jdbcType=VARCHAR},
+      </if>
+      <if test="thSex != null" >
+        th_sex = #{thSex,jdbcType=VARCHAR},
+      </if>
+      <if test="thAddress != null" >
+        th_address = #{thAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="thPhone != null" >
+        th_phone = #{thPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="thTittle != null" >
+        th_tittle = #{thTittle,jdbcType=VARCHAR},
+      </if>
+      <if test="thEmail != null" >
+        th_email = #{thEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where th_no = #{thNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pdsu.po.Teacher" >
+    update teacher
+    set th_name = #{thName,jdbcType=VARCHAR},
+      th_sex = #{thSex,jdbcType=VARCHAR},
+      th_address = #{thAddress,jdbcType=VARCHAR},
+      th_phone = #{thPhone,jdbcType=VARCHAR},
+      th_tittle = #{thTittle,jdbcType=VARCHAR},
+      th_email = #{thEmail,jdbcType=VARCHAR}
+    where th_no = #{thNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

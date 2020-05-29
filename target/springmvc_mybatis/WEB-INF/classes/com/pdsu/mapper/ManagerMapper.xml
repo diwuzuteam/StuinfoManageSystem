@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pdsu.mapper.ManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.pdsu.po.Manager" >
+    <id column="ad_id" property="adId" jdbcType="VARCHAR" />
+    <result column="ad_password" property="adPassword" jdbcType="VARCHAR" />
+    <result column="ad_phone" property="adPhone" jdbcType="VARCHAR" />
+    <result column="ad_name" property="adName" jdbcType="VARCHAR" />
+    <result column="ad_email" property="adEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ad_id, ad_password, ad_phone, ad_name, ad_email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from manager
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pdsu.po.Manager" >
+    insert into manager (ad_id, ad_password, ad_phone, 
+      ad_name, ad_email)
+    values (#{adId,jdbcType=VARCHAR}, #{adPassword,jdbcType=VARCHAR}, #{adPhone,jdbcType=VARCHAR}, 
+      #{adName,jdbcType=VARCHAR}, #{adEmail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pdsu.po.Manager" >
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="adPassword != null" >
+        ad_password,
+      </if>
+      <if test="adPhone != null" >
+        ad_phone,
+      </if>
+      <if test="adName != null" >
+        ad_name,
+      </if>
+      <if test="adEmail != null" >
+        ad_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        #{adId,jdbcType=VARCHAR},
+      </if>
+      <if test="adPassword != null" >
+        #{adPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adPhone != null" >
+        #{adPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adName != null" >
+        #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adEmail != null" >
+        #{adEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pdsu.po.Manager" >
+    update manager
+    <set >
+      <if test="adPassword != null" >
+        ad_password = #{adPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adPhone != null" >
+        ad_phone = #{adPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adName != null" >
+        ad_name = #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adEmail != null" >
+        ad_email = #{adEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pdsu.po.Manager" >
+    update manager
+    set ad_password = #{adPassword,jdbcType=VARCHAR},
+      ad_phone = #{adPhone,jdbcType=VARCHAR},
+      ad_name = #{adName,jdbcType=VARCHAR},
+      ad_email = #{adEmail,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </update>
+</mapper>
