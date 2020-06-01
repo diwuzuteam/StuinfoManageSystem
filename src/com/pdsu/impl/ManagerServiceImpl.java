@@ -33,4 +33,16 @@ public class ManagerServiceImpl implements ManagerService {
         managerMapper.insert(manager);
     }
 
+    @Override
+    public Manager selectManager(String adId) throws Exception {
+        Manager manager = managerMapper.selectByPrimaryKey(adId);
+        return manager;
+    }
+
+    @Override
+    public void editManager(String id,Manager manager) throws Exception {
+        manager.setAdId(id);
+        managerMapper.updateByPrimaryKey(manager);
+    }
+
 }

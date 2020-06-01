@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * @author xxy
- * @Description:
+ * @Description: 管理员相关功能
  * @Version 1.0
  */
 public interface ManagerService {
@@ -20,7 +20,14 @@ public interface ManagerService {
     /**
      * 管理员注册
      */
-//    public void addManager(String adId, String adPassword, String adPhone, String adName, String adEmail)throws Exception;
     public void addManager(Manager manager)throws Exception;
+    /**
+     * 按工号查找管理员信息
+     */
+    public Manager selectManager(String adId)throws Exception;
+    /**
+     * 管理员密码修改
+     */
+    public void editManager(String id,Manager manager)throws Exception;
 
 }

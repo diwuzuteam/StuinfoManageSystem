@@ -9,5 +9,8 @@
         <module name="StuinfoManageSystem" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="shiyan2" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

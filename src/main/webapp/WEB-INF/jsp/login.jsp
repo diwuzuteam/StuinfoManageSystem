@@ -1,9 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<script src="<%=request.getContextPath()%>/resource/static/assets/jquery/jquery-2.1.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/static/assets/jquery/jquery-2.1.4.min.js"></script>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -15,17 +11,17 @@
     <title>学生信息管理系统</title>
     <!-- Bootstrap -->
     <link rel="stylesheet"
-          href="resource/static/assets/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+          href="${pageContext.request.contextPath}/resource/static/assets/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
     <!-- Font Awesome -->
     <link rel="stylesheet"
-          href="resource/static/assets/font-awesome/4.7.0/css/font-awesome.css" type="text/css">
+          href="${pageContext.request.contextPath}/resource/static/assets/font-awesome/4.7.0/css/font-awesome.css" type="text/css">
     <!-- Metis core stylesheet -->
     <link rel="stylesheet"
-          href="resource/static/bootstrap-adim/main.css" type="text/css">
+          href="${pageContext.request.contextPath}/resource/static/bootstrap-adim/main.css" type="text/css">
     <!-- onoffcanvas stylesheet -->
-    <link rel="stylesheet" href="resource/static/assets/onoffcanvas/onoffcanvas.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/static/assets/onoffcanvas/onoffcanvas.min.css" type="text/css">
     <!-- animate.css stylesheet -->
-    <link rel="stylesheet" href="resource/static/assets/animate.css/animate.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/static/assets/animate.css/animate.css" type="text/css">
 <%--用户名密码非空校验--%>
     <script language="JavaScript" type="text/JavaScript">
         function loginCheck(loginForm){
@@ -43,6 +39,30 @@
             }else{
               return true;
             }
+        }
+    </script>
+<%--ajax判断密码是否正确--%>
+    <script type="text/javascript">
+        function checkPassword(){
+            var id = $("#id").val();
+            var password = $("#password").val();
+            $.ajax({
+                url:"${pageContext.request.contextPath}/manager/checkPassword.action",
+                type:"post",
+                data:{
+                    "adId":id,
+                    "adPassword":password
+                },
+                success:function (data) {
+                    if (data.toString()=="NO"){
+                        alert("用户名或密码错误！")
+                        // location.reload();
+                    }
+                },
+                error:function (data) {
+                    alert("未知错误，请联系管理员。")
+                }
+            })
         }
     </script>
 <%--对注册信息的校验--%>
@@ -91,13 +111,14 @@
     <script>
         function a1(){
             $.ajax({
-                url:"${pageContext.request.contextPath}/exitUsername.action",
+                url:"${pageContext.request.contextPath}/manager/exitUsername.action",
+                type:"post",
                 data:{'adId':$("#adId").val()},
                 success:function (data) {
                     if (data.toString()=='OK'){
-                        alert("该用户已存在！");
+                        alert("该用户已存在！")
                     }else {
-                        alert("用户可用！");
+                        alert("用户可用！")
                     }
                 }
             });
@@ -117,15 +138,15 @@
             }
         }
     %>
+<%--实现页面隐藏和显示--%>
 <script language="JavaScript" type="text/javascript">
     function show(){
         document.getElementById("login").style.display="none";//隐藏
         document.getElementById("signup").style.display="block";
     }
 </script>
-
 </head>
-<body class="login">
+<body class="login" onload="document.getElementById('id').focus();">
 <!-- 顶部导航栏 -->
 <header class="navbar navbar-fixed-top">
     <div class="container-fluid">
@@ -142,24 +163,23 @@
         </ul>
     </div>
 </header>
-
 <div class="form-signin">
     <div class="text-center">
-        <img src="resource/static/img/pds.jpg" alt="学生信息管理系统">
+        <img src="${pageContext.request.contextPath}/resource/static/img/pds.jpg" alt="学生信息管理系统">
     </div>
     <hr>
     <%--登录界面--%>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
             <%--提交到指定的地方--%>
-            <form name="loginForm" action="toLogin.action" method="POST" onsubmit="return loginCheck(this)">
+            <form name="loginForm" action="${pageContext.request.contextPath}/manager/toLogin.action" method="POST" onsubmit="return loginCheck(this)">
                 <p class="text-muted text-center">
                     请输入您的账号和密码
                 </p>
-                <input  name="adId" type="text" placeholder="请输入账号" value="${adId}"
+                <input name="adId" type="text" placeholder="请输入账号" id="id" value="${adId}"
                        class="form-control top">
-                <input  name="adPassword" type="password" placeholder="请输入密码" value="${adPassword}"
-                       class="form-control bottom">
+                <input  name="adPassword" type="password" id="password" placeholder="请输入密码" value="${adPassword}"
+                       class="form-control bottom" onblur="checkPassword()">
 
                 <div class="checkbox">
                     <label>
@@ -167,19 +187,19 @@
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block"
-                        type="submit" >登陆</button>
+                        type="submit">登陆</button>
             </form>
                 <ul class="list-inline" id="link">
                     <li><a class="text-muted" href="#" onclick="show()" data-toggle="tab">注册账号
                     </a></li>
-                    <li><a class="text-muted" href="goRegister.action">找回密码
+                    <li><a class="text-muted" href="">找回密码
                     </a></li>
                 </ul>
         </div>
 <%--注册页面--%>
         <div id="signup" class="tab-pane">
             <%--提交到指定的地方--%>
-            <form action="managerRegister.action" name="registerForm" onsubmit="return registerCheck(this)">
+            <form action="${pageContext.request.contextPath}/manager/managerRegister.action" name="registerForm" onsubmit="return registerCheck(this)">
                 <input type="text" placeholder="输入账号" class="form-control top" name="adId" id="adId" onblur="a1()">
                 <input type="text" placeholder="输入姓名" class="form-control top" name="adName">
                 <input type="email" placeholder="输入email地址(mail@domain.com)"

@@ -31,7 +31,7 @@ public class StudentController {
         //默认每页记录
         PageInfo<Student> pageInfo = studentService.findStudentList(page, size);
         modelAndView.addObject("pageInfo", pageInfo);
-        modelAndView.setViewName("listStudentPage");
+        modelAndView.setViewName("student/listStudentPage");
         return  modelAndView;
     }
     /**
@@ -42,7 +42,7 @@ public class StudentController {
                               ModelAndView modelAndView) throws Exception {
         Student student = studentService.findStudentByNo(suId);
         modelAndView.addObject("student", student);
-        modelAndView.setViewName("viewStudent");
+        modelAndView.setViewName("student/viewStudent");
         return modelAndView;
     }
     /**
@@ -52,7 +52,7 @@ public class StudentController {
     public ModelAndView goEditStudent(@PathVariable("suId") String suId,ModelAndView modelAndView) throws Exception {
         Student student = studentService.findStudentByNo(suId);
         modelAndView.addObject("student", student);
-        modelAndView.setViewName("editStudent");
+        modelAndView.setViewName("student/editStudent");
         return modelAndView;
     }
     /**
@@ -68,7 +68,7 @@ public class StudentController {
      */
     @RequestMapping(value = "/goAddStudent")
     public ModelAndView goAddStudent(ModelAndView modelAndView){
-        modelAndView.setViewName("addStudent");
+        modelAndView.setViewName("student/addStudent");
         return modelAndView;
     }
     /**
@@ -106,7 +106,7 @@ public class StudentController {
      */
     @RequestMapping("/goQueryStudent")
     public ModelAndView goQueryStudent(ModelAndView modelAndView){
-        modelAndView.setViewName("queryStudent");
+        modelAndView.setViewName("student/queryStudent");
         return modelAndView;
     }
     /**
@@ -131,7 +131,7 @@ public class StudentController {
         PageInfo<Student> pageInfo = studentService.dynamicQuery(page, size, student);
         student.getSuId();
         modelAndView.addObject("pageInfo", pageInfo);
-        modelAndView.setViewName("queryStudent");
+        modelAndView.setViewName("student/queryStudent");
         return  modelAndView;
     }
 }

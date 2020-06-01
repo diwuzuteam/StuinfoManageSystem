@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author xxy
- * @Description:
+ * @Description: 学生相关功能
  * @Version 1.0
  */
 public interface StudentService {
