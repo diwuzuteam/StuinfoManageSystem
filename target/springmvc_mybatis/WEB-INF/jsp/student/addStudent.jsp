@@ -82,9 +82,9 @@
                 data:{'suId':$("#suId").val()},
                 success:function (data) {
                     if (data.toString()=='OK'){
-                        alert("该用户已存在！");
+                        alert("该用户已存在！")
                     }else {
-                        alert("用户可用！");
+                        alert("ID可用！")
                     }
                 }
             });

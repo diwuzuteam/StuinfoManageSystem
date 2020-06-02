@@ -109,7 +109,7 @@
     </script>
 <%--判断用户名是否存在--%>
     <script>
-        function a1(){
+        function checkAdName(){
             $.ajax({
                 url:"${pageContext.request.contextPath}/manager/exitUsername.action",
                 type:"post",
@@ -140,11 +140,78 @@
     %>
 <%--实现页面隐藏和显示--%>
 <script language="JavaScript" type="text/javascript">
-    function show(){
-        document.getElementById("login").style.display="none";//隐藏
+    function showRegister(){
+        //隐藏登陆界面
+        document.getElementById("login").style.display="none";
+        //显示注册界面
         document.getElementById("signup").style.display="block";
     }
 </script>
+<script type="text/javascript">
+    function showForgot() {
+        //隐藏登陆界面
+        document.getElementById("login").style.display="none";
+        //显示忘记密码界面
+        document.getElementById("forgot").style.display="block";
+    }
+</script>
+<%--验证找回密码输入--%>
+<script type="text/javascript">
+    function checkForgot() {
+        var id = $("#forgot_id").val();
+        var name = $("#forgot_name").val();
+        var pass = $("#forgot_pass").val();
+        var pass1 = $("#forgot_pass1").val();
+        if (id.length == 0){
+            alert("请输入工号！")
+            $("#forgot_id").focus();
+            return false;
+        }else if(name.length == 0){
+            alert("请输入姓名！")
+            $("#forgot_name").focus();
+            return false;
+        }else if (pass.length == 0){
+            alert("新密码不能为空！")
+            $("#forgot_pass").focus();
+            return false;
+        }else if (pass1.length == 0){
+            alert("请再次输入新密码！")
+            $("#forgot_pass1").focus();
+            return false;
+        }else if (pass != pass1){
+            alert("两次密码不一致！")
+            $("#forgot_pass1").focus();
+            return false;
+        }else{
+            return true;
+        }
+    }
+</script>
+<%--ajax判断工号和姓名是否一致--%>
+    <script>
+        function checkIdAndName() {
+            $.ajax({
+                url:"${pageContext.request.contextPath}/manager/checkIdAndName.action",
+                type:"post",
+                data:{
+                    'adId':$("#forgot_id").val(),
+                    'adName':$("#forgot_name").val()
+                },
+                success:function (data) {
+                    if (data.toString()=='OK'){
+                        return true;
+                    }else {
+                        alert("工号和姓名验证失败，请重新输入！")
+                        $("#forgot_id").val("");
+                        $("#forgot_name").val("");
+                        $("#forgot_pass").val("");
+                        $("#forgot_pass1").val("");
+                        $("#forgot_id").focus();
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 <body class="login" onload="document.getElementById('id').focus();">
 <!-- 顶部导航栏 -->
@@ -192,7 +259,7 @@
                 <ul class="list-inline" id="link">
                     <li><a class="text-muted" href="#" onclick="show()" data-toggle="tab">注册账号
                     </a></li>
-                    <li><a class="text-muted" href="">找回密码
+                    <li><a class="text-muted" href="#" onclick="showForgot()" data-toggle="tab">忘记密码
                     </a></li>
                 </ul>
         </div>
@@ -200,7 +267,7 @@
         <div id="signup" class="tab-pane">
             <%--提交到指定的地方--%>
             <form action="${pageContext.request.contextPath}/manager/managerRegister.action" name="registerForm" onsubmit="return registerCheck(this)">
-                <input type="text" placeholder="输入账号" class="form-control top" name="adId" id="adId" onblur="a1()">
+                <input type="text" placeholder="输入账号" class="form-control top" name="adId" id="adId" onblur="checkAdName()">
                 <input type="text" placeholder="输入姓名" class="form-control top" name="adName">
                 <input type="email" placeholder="输入email地址(mail@domain.com)"
                        class="form-control middle" name="adEmail">
@@ -212,6 +279,27 @@
                 <span id="spaName" onchange="check()"></span><br/><br/>
                 <button class="btn btn-lg btn-success btn-block"
                         type="submit">注册</button>
+            </form>
+                <ul class="list-inline">
+                    <li><a class="text-muted" href="javascript:history.go(-1);location.reload()" data-toggle="tab">返回主页
+                    </a></li>
+                </ul>
+        </div>
+<%--忘记密码界面--%>
+        <div id="forgot" class="tab-pane">
+            <%--提交到指定的地方--%>
+            <form name="forgot" action="${pageContext.request.contextPath}/manager/updatePassword.action" method="post" onsubmit="return checkForgot(this)">
+                <p class="text-muted text-center">输入你的工号</p>
+                <input type="text" name="id" id="forgot_id" placeholder="输入工号" class="form-control">
+                <p class="text-muted text-center">输入你的姓名</p>
+                <input type="text" name="adName" id="forgot_name" placeholder="输入姓名" onblur="checkIdAndName()" class="form-control">
+                <p class="text-muted text-center">输入你的新密码</p>
+                <input type="password" name="adPassword" id="forgot_pass" placeholder="输入新密码" class="form-control">
+                <p class="text-muted text-center">再次输入你的新密码</p>
+                <input type="password" name="adPassword1" id="forgot_pass1" placeholder="再次输入新密码" class="form-control">
+                <br>
+                <button class="btn btn-lg btn-danger btn-block"
+                        type="submit">忘记密码</button>
             </form>
                 <ul class="list-inline">
                     <li><a class="text-muted" href="javascript:history.go(-1);location.reload()" data-toggle="tab">返回主页

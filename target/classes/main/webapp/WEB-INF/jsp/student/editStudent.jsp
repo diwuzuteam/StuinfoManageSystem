@@ -7,7 +7,7 @@
                     <label class="control-label">学号</label>
                     <input type="text" style="width: 340px;"
                            class="form-control" placeholder="请输入学生学号"
-                           disabled name="suId" value="${student.suId}">
+                           readonly name="suId" value="${student.suId}">
                 </div>
 
                 <div class="form-group ">

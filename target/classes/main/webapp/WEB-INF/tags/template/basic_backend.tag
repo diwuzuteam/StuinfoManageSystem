@@ -56,9 +56,9 @@
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right col-sm-offset-6">
-            <li><a href=""><span class="glyphicon glyphicon-user"></span>${manager.adName}
+            <li><a href="${pageContext.request.contextPath}/manager/toShowManager/${manager.adId}.action"><span class="glyphicon glyphicon-user"></span>${manager.adName}
             </a></li>
-            <li><a href="logout.action"><span
+            <li><a href="${pageContext.request.contextPath}/manager/logout.action"><span
                     class="glyphicon glyphicon-log-out"></span>注销</a></li>
         </ul>
     </div>

@@ -45,7 +45,7 @@ public class NavigationTag extends TagSupport {
 			// 显示“上一页”按钮
 			if (page.getPageNum() > 1) {
 				String preUrl = append(url, "page", page.getPageNum() - 1);
-				preUrl = append(preUrl, "size", page.getSize());
+				preUrl = append(preUrl, "size", 10);
 		writer.print("<li><a href=\"" + homeUrl + "\">" + "首页</a></li>");
 		writer.print("<li><a href=\"" + preUrl + "\">" + "上一页</a></li>");
 			} else {
@@ -70,7 +70,7 @@ writer.print("<li class=\"disabled\"><a href=\"#\">" + "上一页 </a></li>");
 					continue;
 				}
 				String pageUrl = append(url, "page", indexPage);
-				pageUrl = append(pageUrl, "size", page.getSize());
+				pageUrl = append(pageUrl, "size", 10);
 writer.print("<li><a href=\"" + pageUrl + "\">" + indexPage + "</a></li>");
 			}
 			// 显示“下一页”按钮

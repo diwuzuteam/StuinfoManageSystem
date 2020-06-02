@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--添加自定义标签--%>
+<%@ taglib prefix="xxy" uri="http://com.xxy/common/"%>
 <template:user_backend htmlTitle="学生信息列表" bodyTitle="查看学生信息">
     <c:choose>
         <c:when test="${pageInfo.list.size()==0}">
@@ -18,7 +20,7 @@
         <!-- Default panel contents -->
         <div class="panel-heading clearfix">
             <div class="pull-right">
-                <div class="btn-group">
+               <%-- <div class="btn-group">
                     <button type="button"
                             class="btn btn-default dropdown-toggle active"
                             data-toggle="dropdown">
@@ -30,20 +32,19 @@
                         <li class="divider"></li>
                         <li><a href="#">50</a></li>
                     </ul>
-                </div>
+                <%--</div>&ndash;%&gt;
                 <div class="btn-group">
                     <button type="button"
                             class="btn btn-default dropdown-toggle"
                             data-toggle="dropdown">
-                        用户名排序 <span class="caret"></span>
+                        ID排序 <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu pull-right" role="menu">
-                        <li><a href="#">升排序</a></li>
-                        <li><a href="#">类型排序</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Reset</a></li>
+                        <li><a href="${pageContext.request.contextPath}/student/showAllStudentsDesc.action">降序排序</a></li>
+&lt;%&ndash;                        <li class="divider"></li>&ndash;%&gt;
+                        <li><a href="${pageContext.request.contextPath}/student/showAllStudents.action">升序排序</a></li>
                     </ul>
-                </div>
+                </div>--%>
             </div>
             <div class="pull-left">
                 <button class="btn btn-danger" onclick="deleteSus()">批量删除</button>
@@ -103,6 +104,9 @@
             </c:forEach>
             </tbody>
         </table>
+        <div class="col-md-12 text-center">
+            <xxy:page url="${pageContext.request.contextPath}/student/showAllStudents.action"/>
+        </div>
     </div>
 </template:user_backend>
 <%--使用ajax异步删除后刷新--%>

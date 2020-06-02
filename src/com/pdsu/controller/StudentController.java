@@ -21,9 +21,9 @@ public class StudentController {
     @Autowired
     public StudentServiceImpl studentService;
     /**
-     *分页显示
+     *分页显示(升序)
      */
-    @RequestMapping(value = "/showAllStudents")
+    @RequestMapping(value = {"/showAllStudents","/",""})
     public ModelAndView showAllStudents(@RequestParam(value = "page", defaultValue = "1") int page,
                                         @RequestParam(value = "size", defaultValue = "10") int size,
                                         ModelAndView modelAndView){
@@ -34,6 +34,22 @@ public class StudentController {
         modelAndView.setViewName("student/listStudentPage");
         return  modelAndView;
     }
+
+    /**
+     *分页显示(降序)
+     */
+    @RequestMapping(value = {"/showAllStudentsDesc","/",""})
+    public ModelAndView showAllStudentsDesc(@RequestParam(value = "page", defaultValue = "1") int page,
+                                        @RequestParam(value = "size", defaultValue = "10") int size,
+                                        ModelAndView modelAndView){
+
+        //默认每页记录
+        PageInfo<Student> pageInfo = studentService.findStudentListDesc(page, size);
+        modelAndView.addObject("pageInfo", pageInfo);
+        modelAndView.setViewName("student/listStudentPage");
+        return  modelAndView;
+    }
+
     /**
      * 跳转到学生详情页面
      */
@@ -45,6 +61,7 @@ public class StudentController {
         modelAndView.setViewName("student/viewStudent");
         return modelAndView;
     }
+
     /**
      * 跳转到编辑学生页面
      */
@@ -55,6 +72,7 @@ public class StudentController {
         modelAndView.setViewName("student/editStudent");
         return modelAndView;
     }
+
     /**
      * 更新学生信息
      */
@@ -63,6 +81,7 @@ public class StudentController {
         studentService.updateStudent(suId,student);
         return "redirect:showAllStudents.action";
     }
+
     /**
      * 跳转到添加学生页面
      */
@@ -71,6 +90,7 @@ public class StudentController {
         modelAndView.setViewName("student/addStudent");
         return modelAndView;
     }
+
     /**
      * 添加学生信息
      */
@@ -79,6 +99,7 @@ public class StudentController {
         studentService.addStudent(student);
         return "redirect:showAllStudents.action";
     }
+
     /**
      * 判断账号是否存在
      */
@@ -93,6 +114,7 @@ public class StudentController {
         }
         return msg;
     }
+
     /**
      * 删除学生信息
      */
@@ -101,6 +123,7 @@ public class StudentController {
     public void deleteStudentById(String suId)throws Exception{
         studentService.deleteStudent(suId);
     }
+
     /**
      * 跳转到学生查询页面
      */
@@ -109,6 +132,7 @@ public class StudentController {
         modelAndView.setViewName("student/queryStudent");
         return modelAndView;
     }
+
     /**
      * 批量删除学生信息
      */
@@ -119,6 +143,7 @@ public class StudentController {
             studentService.deleteStudent(id);
         }
     }
+
     /**
      * 动态查询学生信息，并分页
      */
@@ -134,4 +159,5 @@ public class StudentController {
         modelAndView.setViewName("student/queryStudent");
         return  modelAndView;
     }
+
 }

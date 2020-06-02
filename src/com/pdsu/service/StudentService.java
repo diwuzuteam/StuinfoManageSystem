@@ -16,9 +16,13 @@ public interface StudentService {
      */
      public List<Student> findAllStudent()throws Exception;
     /**
-     * 分页
+     * 分页(默认升序)
      */
     public PageInfo<Student> findStudentList(int page, int size);
+    /**
+     * 分页(降序)
+     */
+    public PageInfo<Student> findStudentListDesc(int page, int size);
     /**
      * 按学号查找学生
      */

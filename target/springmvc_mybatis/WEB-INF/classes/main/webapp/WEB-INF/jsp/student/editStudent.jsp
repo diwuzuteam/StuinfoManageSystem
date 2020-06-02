@@ -3,12 +3,11 @@
 <template:user_backend htmlTitle="编辑学生信息" bodyTitle="编辑学生信息">
     <div class="panel-body">
         <form action="${pageContext.request.contextPath}/student/updateStudent.action" method="post">
-<%--            <fieldset>--%>
                 <div class="form-group ">
                     <label class="control-label">学号</label>
                     <input type="text" style="width: 340px;"
                            class="form-control" placeholder="请输入学生学号"
-                           disabled name="suId" value="${student.suId}">
+                           readonly name="suId" value="${student.suId}">
                 </div>
 
                 <div class="form-group ">

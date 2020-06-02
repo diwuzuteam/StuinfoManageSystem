@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<template:user_backend htmlTitle="查询学生信息" bodyTitle="查询学生信息">
+<%--添加自定义标签--%>
+<%@ taglib prefix="xxy" uri="http://com.xxy/common/"%>
+<template:user_backend htmlTitle="学生信息列表" bodyTitle="查看学生信息">
     <c:choose>
         <c:when test="${pageInfo.list.size()==0}">
             <h3>目前系统没有任何学生信息</h3>
@@ -17,22 +19,39 @@
     <div class="panel panel-default ">
         <!-- Default panel contents -->
         <div class="panel-heading clearfix">
-            <form action="${pageContext.request.contextPath}/student/dynamicQuery.action" method="post">
-                <div class="pull-left">
-                    学号: <input type="text" style="width: 340px;"
-                               class="form-control" placeholder="输入查询学号(可不填)"
-                               name="suId">
-                    姓名: <input type="text" style="width: 340px;"
-                               class="form-control" placeholder="输入查询姓名(可不填)"
-                               name="suName">
-                    班级: <input type="text" style="width: 340px;"
-                               class="form-control" placeholder="输入查询班级(可不填)"
-                               name="suClass">
-                    <button class="btn" style="background-color:#0b7285;color: white" type="submit">查询</button>
-                </div>
-
-            </form>
+            <div class="pull-right">
+               <%-- <div class="btn-group">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle active"
+                            data-toggle="dropdown">
+                        每页记录数 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">20</a></li>
+                        <li><a href="#">30</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">50</a></li>
+                    </ul>
+                <%--</div>&ndash;%&gt;
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown">
+                        ID排序 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li><a href="${pageContext.request.contextPath}/student/showAllStudentsDesc.action">降序排序</a></li>
+&lt;%&ndash;                        <li class="divider"></li>&ndash;%&gt;
+                        <li><a href="${pageContext.request.contextPath}/student/showAllStudents.action">升序排序</a></li>
+                    </ul>
+                </div>--%>
+            </div>
+            <div class="pull-left">
+                <button class="btn btn-danger" onclick="deleteSus()">批量删除</button>
+            </div>
         </div>
+
+
         <table id="List" class="table table-bordered table-hover cc">
             <thead>
             <tr class="">
@@ -85,26 +104,11 @@
             </c:forEach>
             </tbody>
         </table>
+        <div class="col-md-12 text-center">
+            <xxy:page url="${pageContext.request.contextPath}/student/showAllStudents.action"/>
+        </div>
     </div>
-    <script>
-        //设置页面对应的菜单选项
-        var ItemId ="Item1_0";
-    </script>
 </template:user_backend>
-<%--实现全选和取消全选--%>
-<script>
-    function selectAll(){
-        $("input[type='checkbox']").each( function() {
-            if($(this).prop("checked")==true) {
-                $("input[type='checkbox']").prop('checked', true);
-                return;
-            } else {
-                $("input[type='checkbox']").prop('checked', false);
-                return;
-            }
-        });
-    }
-</script>
 <%--使用ajax异步删除后刷新--%>
 <script>
     var ItemId = "Item1_2";
@@ -124,7 +128,51 @@
                 }
             })
         }else{
-            return false;
+          return false;
         }
+    }
+</script>
+<%--批量删除按钮实现--%>
+<script>
+    var ItemId = "Item1_2";
+    function deleteSus() {
+        var ids = [];
+        $('input[name="checkbox"]:checked').each(function(){
+            ids.push($(this).val());
+        });
+        if (ids.length == 0){
+            alert("请选中要删除的学生！")
+        }else{
+            if (confirm("确定删除多个学生信息吗？")){
+                $.ajax({
+                    dataType:'text',
+                    type:"post",
+                    url:"${pageContext.request.contextPath}/student/deleteStudents.action",
+                    data:{ids:ids},
+                    success:function(){
+                        window.location.reload();
+                    },
+                    error:function () {
+                        window.location.reload();
+                    }
+                })
+            }else{
+                return false;
+            }
+        }
+    }
+</script>
+<%--实现全选和取消全选--%>
+<script>
+    function selectAll(){
+        $("input[type='checkbox']").each( function() {
+            if($(this).prop("checked")==true) {
+                $("input[type='checkbox']").prop('checked', true);
+                return;
+            } else {
+                $("input[type='checkbox']").prop('checked', false);
+                return;
+            }
+        });
     }
 </script>

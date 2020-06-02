@@ -6,7 +6,7 @@ import com.pdsu.mapper.StudentMapper;
 import com.pdsu.po.Student;
 import com.pdsu.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,7 +25,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public PageInfo<Student> findStudentList(int page, int size) {
-        PageHelper.startPage(page, size);
+        String orderBy = "su_id asc";
+        PageHelper.startPage(page, size, orderBy);
+        List<Student> list = (List<Student>) studentMapper.selectAllStudent();
+        PageInfo<Student> pageInfo = new PageInfo<Student>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<Student> findStudentListDesc(int page, int size) {
+        String orderBy = "su_id desc";
+        PageHelper.startPage(page, size, orderBy);
         List<Student> list = (List<Student>) studentMapper.selectAllStudent();
         PageInfo<Student> pageInfo = new PageInfo<Student>(list);
         return pageInfo;

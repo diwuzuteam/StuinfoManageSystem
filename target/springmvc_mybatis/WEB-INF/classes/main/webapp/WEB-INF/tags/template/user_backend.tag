@@ -44,10 +44,10 @@
                         <a class="has-arrow" href="2#" id="Item2_0">
                             <span class="fa fa-fw fa-user-circle fa-lg"></span>个人中心</a>
                         <ul class="mm-collapse">
-                            <li><a href="studen-t/sessions" aria-expanded="false"
+                            <li><a href="${pageContext.request.contextPath}/manager/toShowManager/${manager.adId}.action" aria-expanded="false"
                                 id="Item2_1">管理员信息</a></li>
-                            <li><a href="#" aria-expanded="false"
-                                   id="Item2_2">修改密码</a></li>
+                            <li><a href="${pageContext.request.contextPath}/manager/goEditManager.action" aria-expanded="false"
+                                   id="Item2_2">修改信息</a></li>
                         </ul>
                     </li>
                 </ul>

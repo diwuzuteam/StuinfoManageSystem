@@ -3,5 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
+<%--自定义标签--%>
+<%@ taglib prefix="xxy" uri="http://com.xxy/common/"%>
 
 

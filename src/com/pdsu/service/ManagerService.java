@@ -26,8 +26,12 @@ public interface ManagerService {
      */
     public Manager selectManager(String adId)throws Exception;
     /**
-     * 管理员密码修改
+     * 管理员信息修改
      */
     public void editManager(String id,Manager manager)throws Exception;
+    /**
+     * 管理员密码修改
+     */
+    public void updatePassword(Manager manager)throws Exception;
 
 }

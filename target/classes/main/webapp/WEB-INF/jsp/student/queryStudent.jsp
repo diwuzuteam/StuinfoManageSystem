@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="xxy" uri="http://com.xxy/common/" %>
 <template:user_backend htmlTitle="查询学生信息" bodyTitle="查询学生信息">
     <c:choose>
         <c:when test="${pageInfo.list.size()==0}">
-            <h3>目前系统没有任何学生信息</h3>
+            <h3>目前系统中没有该学生相关信息</h3>
         </c:when>
         <c:otherwise>
             <strong>总记录数:${pageInfo.total}, 总页数:${pageInfo.pages},
@@ -30,7 +31,6 @@
                                name="suClass">
                     <button class="btn" style="background-color:#0b7285;color: white" type="submit">查询</button>
                 </div>
-
             </form>
         </div>
         <table id="List" class="table table-bordered table-hover cc">
@@ -51,7 +51,7 @@
             </thead>
             <tbody class="">
 
-            <!--遍历输出所有学生信息内容-->
+            <!--遍历输出查询到的学生信息内容-->
             <c:forEach var="student" items="${pageInfo.list}"
                        varStatus="pageInfo">
                 <tr>
@@ -85,10 +85,13 @@
             </c:forEach>
             </tbody>
         </table>
+        <div class="col-md-12 text-center">
+            <xxy:page url="${pageContext.request.contextPath}/student/showAllStudents.action"/>
+        </div>
     </div>
     <script>
         //设置页面对应的菜单选项
-        var ItemId ="Item1_0";
+        var ItemId ="Item1_3";
     </script>
 </template:user_backend>
 <%--实现全选和取消全选--%>
@@ -107,7 +110,6 @@
 </script>
 <%--使用ajax异步删除后刷新--%>
 <script>
-    var ItemId = "Item1_2";
     function deleteReg(suId){
         if (confirm("确定删除此学生信息？")){
             $.ajax({

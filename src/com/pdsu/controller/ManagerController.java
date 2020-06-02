@@ -93,9 +93,10 @@ public class ManagerController {
      * 注销登录
      */
     @RequestMapping(value = "/logout")
-    public String logout(HttpSession session) throws Exception {
+    public ModelAndView logout(HttpSession session,ModelAndView modelAndView) throws Exception {
         session.invalidate();
-        return "redirect:login.action";
+        modelAndView.setViewName("login");
+        return modelAndView;
     }
 
     /**
@@ -142,11 +143,40 @@ public class ManagerController {
         return modelAndView;
     }
     /**
-     * 管理员密码修改
+     * 管理员信息修改
      */
     @RequestMapping(value = "/editManager",method = RequestMethod.POST)
     public ModelAndView editManager(String id,Manager manager,ModelAndView modelAndView,HttpSession session)throws Exception{
         managerService.editManager(id,manager);
+        session.invalidate();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+    /**
+     * 验证找回密码界面输入的工号和姓名是否匹配
+     */
+    @RequestMapping(value = "/checkIdAndName",method = RequestMethod.POST)
+    @ResponseBody
+    public String checkIdAndName(String adId,String adName) throws Exception {
+        Manager manager = managerService.selectManager(adId);
+        String msg = "";
+        if (manager == null){
+            msg = "NO";
+        }else{
+            if (manager.getAdName().equals(adName)){
+                msg = "OK";
+            }else{
+                msg = "NO";
+            }
+        }
+        return msg;
+    }
+    /**
+     * 管理员密码修改
+     */
+    @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
+    public ModelAndView updatePassword(Manager manager,ModelAndView modelAndView,HttpSession session){
+        managerService.updatePassword(manager);
         session.invalidate();
         modelAndView.setViewName("login");
         return modelAndView;

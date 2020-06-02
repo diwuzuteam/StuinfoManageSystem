@@ -45,4 +45,9 @@ public class ManagerServiceImpl implements ManagerService {
         managerMapper.updateByPrimaryKey(manager);
     }
 
+    @Override
+    public void updatePassword(Manager manager) {
+        managerMapper.updateByPrimaryKeySelective(manager);
+    }
+
 }
