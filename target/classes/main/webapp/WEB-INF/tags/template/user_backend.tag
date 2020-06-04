@@ -32,12 +32,57 @@
                         <a class="has-arrow" id="Item1_0"><span class="fa fa-fw fa-book fa-lg"></span>学生信息管理</a>
                         <ul class="mm-collapse">
                             <li><a href="${pageContext.request.contextPath}/student/goAddStudent.action" id="Item1_1">
-                                添加学生信息</a></li>
-                            <li><a href="${pageContext.request.contextPath}/student/showAllStudents.action"
-                                   id="Item1_2">查看学生信息
+                                添加学生信息
+                            </a></li>
+                            <li><a href="${pageContext.request.contextPath}/student/showAllStudents.action" id="Item1_2">
+                                查看学生信息
                             </a></li>
                             <li><a href="${pageContext.request.contextPath}/student/goQueryStudent.action" id="Item1_3">
-                                查询学生信息</a></li>
+                                查询学生信息
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="3#" id="Item3_0">
+                            <span class="fa fa-fw fa-user-circle fa-lg"></span>教师信息管理</a>
+                        <ul class="mm-collapse">
+                            <li><a href="${pageContext.request.contextPath}/teacher/toAddTeacher.action" id="Item3_1">
+                                添加教师信息
+                            </a></li>
+                            <li><a href="${pageContext.request.contextPath}/teacher/showAllTeachers.action" id="Item3_2">
+                                查看教师信息
+                            </a></li>
+                            <li><a href="${pageContext.request.contextPath}/teacher/toQueryTeacher.action" id="Item3_3">
+                                查询教师信息
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" id="Item4_0"><span class="fa fa-fw fa-book fa-lg"></span>课程信息管理</a>
+                        <ul class="mm-collapse">
+                            <li><a href="${pageContext.request.contextPath}/course/toAddCourse.action" id="Item4_1">
+                                添加课程信息</a></li>
+                            <li><a href="${pageContext.request.contextPath}/course/showAllCourses.action" id="Item4_2">
+                                查看课程信息
+                            </a></li>
+                            <li><a href="${pageContext.request.contextPath}/course/toQueryCourse.action" id="Item4_3">
+                                查询课程信息
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="5#" id="Item5_0">
+                            <span class="fa fa-fw fa-user-circle fa-lg"></span>宿舍信息管理</a>
+                        <ul class="mm-collapse">
+                            <li><a href="${pageContext.request.contextPath}/dormitory/toAddDormitory.action" id="Item5_1">
+                                添加宿舍信息
+                            </a></li>
+                            <li><a href="${pageContext.request.contextPath}/dormitory/showAllDormitories.action" id="Item5_2">
+                                查看宿舍信息
+                            </a></li>
+                            <li><a href="${pageContext.request.contextPath}/dormitory/toQueryDormitory.action" id="Item5_3">
+                                查询宿舍信息
+                            </a></li>
                         </ul>
                     </li>
                     <li>
@@ -45,9 +90,11 @@
                             <span class="fa fa-fw fa-user-circle fa-lg"></span>个人中心</a>
                         <ul class="mm-collapse">
                             <li><a href="${pageContext.request.contextPath}/manager/toShowManager/${manager.adId}.action" aria-expanded="false"
-                                id="Item2_1">管理员信息</a></li>
+                                id="Item2_1">管理员信息
+                            </a></li>
                             <li><a href="${pageContext.request.contextPath}/manager/goEditManager.action" aria-expanded="false"
-                                   id="Item2_2">修改信息</a></li>
+                                   id="Item2_2">修改信息
+                            </a></li>
                         </ul>
                     </li>
                 </ul>

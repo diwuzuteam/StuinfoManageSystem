@@ -19,6 +19,30 @@
     from teacher
     where th_no = #{thNo,jdbcType=VARCHAR}
   </select>
+  <select id="selectAllTeacher" resultMap="BaseResultMap" parameterType="com.pdsu.po.Teacher">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+  </select>
+  <select id="dynamicQuery" resultMap="BaseResultMap" parameterType="com.pdsu.po.Teacher">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    <where>
+      <if test="thNo != null and thNo != ''">
+        AND th_no LIKE '%${thNo}%'
+      </if>
+      <if test="thName != null and thName != ''">
+        AND th_name LIKE '%${thName}%'
+      </if>
+      <if test="thTittle != null and thTittle != ''">
+        AND th_tittle LIKE '%${thTittle}%'
+      </if>
+      <if test="thNo == null and thNo == null and thName == null and thName == '' and thTittle == null and thTittle == ''">
+        AND 1 = 1
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from teacher
     where th_no = #{thNo,jdbcType=VARCHAR}

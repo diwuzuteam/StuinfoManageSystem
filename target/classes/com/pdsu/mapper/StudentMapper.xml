@@ -38,6 +38,12 @@
       <if test="suClass != null and suClass != ''">
              AND su_class LIKE '%${suClass}%'
       </if>
+      <if test="suDm != null and suDm != ''">
+            AND su_dm LIKE '%${suDm}%'
+      </if>
+      <if test="suId == null and suId == null and suName == null and suName == '' and suClass == null and suClass == '' and suDm == null and suDm == ''">
+        AND 1 = 1
+      </if>
     </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >

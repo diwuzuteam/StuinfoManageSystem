@@ -17,6 +17,30 @@
     from course
     where cs_no = #{csNo,jdbcType=VARCHAR}
   </select>
+  <select id="selectAllCourse" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+  </select>
+  <select id="dynamicQuery" resultMap="BaseResultMap" parameterType="com.pdsu.po.Course">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    <where>
+      <if test="csNo != null and csNo != ''">
+        AND cs_no LIKE '%${csNo}%'
+      </if>
+      <if test="csName != null and csName != ''">
+        AND cs_name LIKE '%${csName}%'
+      </if>
+      <if test="csTeacher != null and csTeacher != ''">
+        AND cs_teacher LIKE '%${csTeacher}%'
+      </if>
+      <if test="csNo == null and csNo == null and csName == null and csName == '' and csTeacher == null and csTeacher == ''">
+        AND 1 = 1
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from course
     where cs_no = #{csNo,jdbcType=VARCHAR}

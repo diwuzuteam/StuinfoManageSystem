@@ -239,7 +239,7 @@
     <div class="tab-content">
         <div id="login" class="tab-pane active">
             <%--提交到指定的地方--%>
-            <form name="loginForm" action="${pageContext.request.contextPath}/manager/toLogin.action" method="POST" onsubmit="return loginCheck(this)">
+            <form name="loginForm" action="${pageContext.request.contextPath}/manager/toLogin.action" method="post" onsubmit="return loginCheck(this)">
                 <p class="text-muted text-center">
                     请输入您的账号和密码
                 </p>

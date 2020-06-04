@@ -29,6 +29,9 @@
                     班级: <input type="text" style="width: 340px;"
                                class="form-control" placeholder="输入查询班级(可不填)"
                                name="suClass">
+                    宿舍: <input type="text" style="width: 340px;"
+                               class="form-control" placeholder="输入查询宿舍号(可不填)"
+                               name="suDm">
                     <button class="btn" style="background-color:#0b7285;color: white" type="submit">查询</button>
                 </div>
             </form>

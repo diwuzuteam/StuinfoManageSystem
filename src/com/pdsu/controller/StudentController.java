@@ -154,7 +154,6 @@ public class StudentController {
 
         //默认每页记录
         PageInfo<Student> pageInfo = studentService.dynamicQuery(page, size, student);
-        student.getSuId();
         modelAndView.addObject("pageInfo", pageInfo);
         modelAndView.setViewName("student/queryStudent");
         return  modelAndView;

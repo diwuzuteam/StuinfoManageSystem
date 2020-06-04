@@ -1,6 +1,9 @@
 package com.pdsu.mapper;
 
+import com.pdsu.po.Student;
 import com.pdsu.po.Teacher;
+
+import java.util.List;
 
 public interface TeacherMapper {
     int deleteByPrimaryKey(String thNo);
@@ -14,4 +17,8 @@ public interface TeacherMapper {
     int updateByPrimaryKeySelective(Teacher record);
 
     int updateByPrimaryKey(Teacher record);
+
+    List<Teacher> selectAllTeacher();
+
+    List<Teacher> dynamicQuery(Teacher teacher);
 }

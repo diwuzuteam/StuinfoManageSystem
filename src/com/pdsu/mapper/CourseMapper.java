@@ -2,6 +2,8 @@ package com.pdsu.mapper;
 
 import com.pdsu.po.Course;
 
+import java.util.List;
+
 public interface CourseMapper {
     int deleteByPrimaryKey(String csNo);
 
@@ -14,4 +16,8 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+
+    List<Course> selectAllCourse();
+
+    List<Course> dynamicQuery(Course course);
 }

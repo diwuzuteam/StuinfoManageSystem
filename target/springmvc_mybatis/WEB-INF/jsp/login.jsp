@@ -239,7 +239,7 @@
     <div class="tab-content">
         <div id="login" class="tab-pane active">
             <%--提交到指定的地方--%>
-            <form name="loginForm" action="${pageContext.request.contextPath}/manager/toLogin.action" method="POST" onsubmit="return loginCheck(this)">
+            <form name="loginForm" action="${pageContext.request.contextPath}/manager/toLogin.action" method="post" onsubmit="return loginCheck(this)">
                 <p class="text-muted text-center">
                     请输入您的账号和密码
                 </p>
@@ -288,7 +288,7 @@
 <%--忘记密码界面--%>
         <div id="forgot" class="tab-pane">
             <%--提交到指定的地方--%>
-            <form name="forgot" action="${pageContext.request.contextPath}/manager/editManager.action" method="post" onsubmit="return checkForgot(this)">
+            <form name="forgot" action="${pageContext.request.contextPath}/manager/updatePassword.action" method="post" onsubmit="return checkForgot(this)">
                 <p class="text-muted text-center">输入你的工号</p>
                 <input type="text" name="id" id="forgot_id" placeholder="输入工号" class="form-control">
                 <p class="text-muted text-center">输入你的姓名</p>

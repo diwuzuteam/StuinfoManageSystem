@@ -8,7 +8,7 @@
                 <span class="glyphicon glyphicon-book"></span> 添加学生信息
             </div>
             <div class="panel-body">
-                <form name="form1" action="${pageContext.request.contextPath}/student/addStudent.action" enctype="multipart/form-data" onsubmit="return myCheck()">
+                <form name="form1" action="${pageContext.request.contextPath}/student/addStudent.action" onsubmit="return myCheck()">
                     <fieldset>
                         <div class="form-group ">
                             <label class="control-label">学号</label>
@@ -65,6 +65,7 @@
                     </fieldset>
                 </form>
                 <button class="btn btn-default" onclick="clear_content()" id="button1">重置</button>
+                <button class="btn btn-default" onclick="javascript:history.back(-1)" id="button2">返回</button>
             </div>
 
         </div>
