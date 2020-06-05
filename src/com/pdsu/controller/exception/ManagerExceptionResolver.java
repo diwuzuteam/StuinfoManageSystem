@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author xxy
- * @Date
  * @Description: 全局异常处理器
  * @Version 1.0
  */
@@ -20,7 +19,7 @@ public class ManagerExceptionResolver implements HandlerExceptionResolver {
         if (e instanceof ManagerException){
             managerException = (ManagerException)e;
         }else{
-            managerException = new ManagerException("未知错误");
+            managerException = new ManagerException("未知错误，请联系管理员！");
         }
         //错误信息
         String message = managerException.getMessage();

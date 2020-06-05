@@ -2,7 +2,6 @@ package com.pdsu.controller.exception;
 
 /**
  * @author xxy
- * @Date
  * @Description: 自定义异常类
  * @Version 1.0
  */
