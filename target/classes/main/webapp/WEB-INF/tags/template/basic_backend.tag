@@ -50,7 +50,7 @@
 <header class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/login.action" style="font-size: 25px;text-align: center;text-shadow: black">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/manager/login.action" style="font-size: 25px;text-align: center;text-shadow: black">
                 <span class="glyphicon glyphicon-leaf"></span>
                 学生信息管理系统
             </a>
@@ -83,7 +83,6 @@
         </div>
     </div>
 </section>
-<%@ include file="/WEB-INF/jsp/footer.tag" %>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="${pageContext.request.contextPath}/resource/static/assets/jquery/jquery-2.1.4.min.js"></script>
 <!-- Bootstrap 核心 JavaScript 文件 -->
@@ -136,6 +135,6 @@
     });
     //根据传进去的参数设置菜单的状态
 </script>
-
+<%@ include file="/WEB-INF/jsp/footer.tag" %>
 </body>
 </html>

@@ -20,31 +20,6 @@
         <!-- Default panel contents -->
         <div class="panel-heading clearfix">
             <div class="pull-right">
-               <%-- <div class="btn-group">
-                    <button type="button"
-                            class="btn btn-default dropdown-toggle active"
-                            data-toggle="dropdown">
-                        每页记录数 <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">20</a></li>
-                        <li><a href="#">30</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">50</a></li>
-                    </ul>
-                <%--</div>&ndash;%&gt;
-                <div class="btn-group">
-                    <button type="button"
-                            class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown">
-                        ID排序 <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu pull-right" role="menu">
-                        <li><a href="${pageContext.request.contextPath}/student/showAllStudentsDesc.action">降序排序</a></li>
-&lt;%&ndash;                        <li class="divider"></li>&ndash;%&gt;
-                        <li><a href="${pageContext.request.contextPath}/student/showAllStudents.action">升序排序</a></li>
-                    </ul>
-                </div>--%>
             </div>
             <div class="pull-left">
                 <button class="btn btn-danger" onclick="deleteSus()">批量删除</button>
@@ -58,6 +33,7 @@
                 <td class="text-center">
                     <input type="checkbox" onclick="selectAll()"></td>
                 <th>序号</th>
+                <th>照片</th>
                 <th>学生ID号</th>
                 <th>姓名</th>
                 <th>性别</th>
@@ -77,6 +53,11 @@
                     <td class="text-center">
                         <input type="checkbox" name="checkbox" value="${student.suId}"></td>
                     <td class="text-center">${pageInfo.count}</td>
+                    <td style="width:60px;height:60px">
+                        <c:if test="${student.suPic!=null}">
+                            <img src="/pic/studentPic/${student.suPic}" style="width:100%;height:100%"/>
+                        </c:if>
+                    </td>
                     <td>${student.suId}</td>
                     <td>${student.suName}</td>
                     <td>${student.suSex}</td>

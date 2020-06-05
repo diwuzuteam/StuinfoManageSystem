@@ -16,7 +16,6 @@
   <jsp:attribute name="headContent">
         <jsp:invoke fragment="extraHeadContent"/>
   </jsp:attribute>
-
     <jsp:attribute name="sideBar">
         <aside id="sidebar" class="sidebar-nav col-sm-2">
             <nav class="sidebar-nav">

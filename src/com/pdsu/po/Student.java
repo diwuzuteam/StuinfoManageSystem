@@ -17,6 +17,8 @@ public class Student implements Serializable {
 
     private String suPhone;
 
+    private String suPic;
+
     public String getSuPhone() {
         return suPhone;
     }
@@ -74,4 +76,8 @@ public class Student implements Serializable {
     public void setSuEmail(String suEmail) {
         this.suEmail = suEmail == null ? null : suEmail.trim();
     }
+
+    public String getSuPic() { return suPic; }
+
+    public void setSuPic(String suPic) { this.suPic = suPic; }
 }

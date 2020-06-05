@@ -29,6 +29,9 @@
                     班级: <input type="text" style="width: 340px;"
                                class="form-control" placeholder="输入查询班级(可不填)"
                                name="suClass">
+                    宿舍: <input type="text" style="width: 340px;"
+                               class="form-control" placeholder="输入查询宿舍号(可不填)"
+                               name="suDm">
                     <button class="btn" style="background-color:#0b7285;color: white" type="submit">查询</button>
                 </div>
             </form>
@@ -39,6 +42,7 @@
                 <td class="text-center">
                     <input type="checkbox" onclick="selectAll()"></td>
                 <th>序号</th>
+                <th>照片</th>
                 <th>学生ID号</th>
                 <th>姓名</th>
                 <th>性别</th>
@@ -58,6 +62,11 @@
                     <td class="text-center">
                         <input type="checkbox" name="checkbox" value="${student.suId}"></td>
                     <td class="text-center">${pageInfo.count}</td>
+                    <td>
+                    <c:if test="${student.suPic!=null}">
+                        <img src="/pic/studentPic/${student.suPic}" style="width:60px;height:60px"/>
+                    </c:if>
+                    </td>
                     <td>${student.suId}</td>
                     <td>${student.suName}</td>
                     <td>${student.suSex}</td>

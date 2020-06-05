@@ -4,6 +4,12 @@
 <template:user_backend htmlTitle="${student.suName}" bodyTitle="学生信息详情">
     <div class="panel panel-default">
         <div class="panel-heading">
+            <strong>照片:</strong>
+            <c:if test="${student.suPic!=null}">
+                <img src="/pic/studentPic/${student.suPic}" style="width:150px;height:150px"/>
+            </c:if>
+        </div>
+        <div class="panel-heading">
             <strong>学号:</strong>${student.suId}
         </div>
         <div class="panel-heading">

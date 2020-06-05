@@ -17,8 +17,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author xxy
- * @Date 2020/5/29 13:27
- * @Description:
+ * @Description: 管理员controller
  * @Version 1.0
  */
 @Controller

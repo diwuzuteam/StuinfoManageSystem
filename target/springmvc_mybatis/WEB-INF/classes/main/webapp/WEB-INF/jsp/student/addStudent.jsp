@@ -8,8 +8,18 @@
                 <span class="glyphicon glyphicon-book"></span> 添加学生信息
             </div>
             <div class="panel-body">
-                <form name="form1" action="${pageContext.request.contextPath}/student/addStudent.action" onsubmit="return myCheck()">
+                <form name="form1" action="${pageContext.request.contextPath}/student/addStudent.action" enctype="multipart/form-data" method="post" onsubmit="return myCheck()">
                     <fieldset>
+                        <div class="form-group ">
+                            <a href="javascript:void(0)" onclick="uploadPhoto()">选择照片</a>
+                            <input type="file" id="photoFile" name="photo" style="display: none;" onchange="upload()">
+                            <img id="preview_photo" src="" width="150px" height="150px">
+                            <style>
+                                img[src=""],img:not([src]){
+                                    opacity:0;
+                                }
+                            </style>
+                        </div>
                         <div class="form-group ">
                             <label class="control-label">学号</label>
                             <input type="text" style="width: 340px;"
@@ -82,7 +92,7 @@
                 url:"${pageContext.request.contextPath}/student/exitStudentId.action",
                 data:{'suId':$("#suId").val()},
                 success:function (data) {
-                    if (data.toString()=='OK'){
+                    if (data.toString() == "OK"){
                         alert("该用户已存在！")
                     }else {
                         alert("ID可用！")
@@ -122,4 +132,8 @@
 
         }
     </script>
+<%--实现图片上传预览--%>
+    <script src="${pageContext.request.contextPath}/resource/static/js/uploadpic.js"/>
+<%--引入jquery--%>
+    <script src="${pageContext.request.contextPath}/resource/static/assets/jquery/jquery-2.1.4.min.js"></script>
 </template:user_backend>

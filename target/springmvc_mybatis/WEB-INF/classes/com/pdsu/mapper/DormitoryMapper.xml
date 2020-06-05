@@ -9,11 +9,41 @@
   <sql id="Base_Column_List" >
     dorm_id, dorm_number, dorm_monitor
   </sql>
+  <select id="selectAllDormitory" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dormitory
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from dormitory
     where dorm_id = #{dormId,jdbcType=VARCHAR}
+  </select>
+  <select id="findDormByMonitor" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from dormitory
+    where dorm_monitor = #{dormMonitor,jdbcType=VARCHAR}
+  </select>
+  <select id="dynamicQuery" resultMap="BaseResultMap" parameterType="com.pdsu.po.Dormitory">
+    select
+    <include refid="Base_Column_List" />
+    from dormitory
+    <where>
+      <if test="dormId != null and dormId != ''">
+        AND dorm_id LIKE '%${dormId}%'
+      </if>
+      <if test="dormNumber != null and dormNumber != ''">
+        AND dorm_number LIKE '%${dormNumber}%'
+      </if>
+      <if test="dormMonitor != null and dormMonitor != ''">
+        AND dorm_monitor LIKE '%${dormMonitor}%'
+      </if>
+      <if test="dormId == null and dormId == null and dormNumber == null and dormNumber == '' and dormMonitor == null and dormMonitor == ''">
+        AND 1 = 1
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from dormitory

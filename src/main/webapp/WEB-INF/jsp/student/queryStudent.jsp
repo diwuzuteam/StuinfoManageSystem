@@ -42,6 +42,7 @@
                 <td class="text-center">
                     <input type="checkbox" onclick="selectAll()"></td>
                 <th>序号</th>
+                <th>照片</th>
                 <th>学生ID号</th>
                 <th>姓名</th>
                 <th>性别</th>
@@ -61,6 +62,11 @@
                     <td class="text-center">
                         <input type="checkbox" name="checkbox" value="${student.suId}"></td>
                     <td class="text-center">${pageInfo.count}</td>
+                    <td>
+                    <c:if test="${student.suPic!=null}">
+                        <img src="/pic/studentPic/${student.suPic}" style="width:60px;height:60px"/>
+                    </c:if>
+                    </td>
                     <td>${student.suId}</td>
                     <td>${student.suName}</td>
                     <td>${student.suSex}</td>
