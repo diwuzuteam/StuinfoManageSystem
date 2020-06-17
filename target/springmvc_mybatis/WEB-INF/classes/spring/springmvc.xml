@@ -18,7 +18,7 @@
 
 <!--全局异常处理器-->
 <!--    只要实现ManagerExceptionResolver接口就是全局异常处理器;-->
-<!--    <bean class="com.pdsu.controller.exception.ManagerExceptionResolver"></bean>-->
+    <bean class="com.pdsu.controller.exception.ManagerExceptionResolver"></bean>
     <!--上传文件-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

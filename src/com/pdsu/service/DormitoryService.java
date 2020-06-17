@@ -2,8 +2,11 @@ package com.pdsu.service;
 
 import com.github.pagehelper.PageInfo;
 import com.pdsu.po.Course;
+import com.pdsu.po.DormQueryVo;
 import com.pdsu.po.Dormitory;
 import com.pdsu.po.Teacher;
+
+import java.util.List;
 
 /**
  * @author xxy
@@ -39,5 +42,9 @@ public interface DormitoryService {
      * 动态查询
      */
     public PageInfo<Dormitory> dynamicQuery(int page, int size, Dormitory dormitory)throws Exception;
+    /**
+     * 宿舍学生信息综合查询
+     */
+    public PageInfo<DormQueryVo> queryDormStu(int page, int size);
 
 }

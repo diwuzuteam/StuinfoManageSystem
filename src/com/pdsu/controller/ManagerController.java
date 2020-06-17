@@ -30,8 +30,9 @@ public class ManagerController {
      * 跳转到登录页面
      */
     @RequestMapping(value = "/login")
-    public String goLogin(HttpSession session) {
-        return "login";
+    public ModelAndView goLogin(ModelAndView modelAndView) {
+        modelAndView.setViewName("login");
+        return modelAndView;
     }
 
     /**
@@ -117,11 +118,11 @@ public class ManagerController {
     /**
      * 添加管理员
      */
-    @RequestMapping(value = "/managerRegister")
+    @RequestMapping(value = "/managerRegister",method = RequestMethod.POST)
     public ModelAndView managerRegister(Manager manager,ModelAndView modelAndView)throws Exception{
-        managerService.addManager(manager);
-        modelAndView.setViewName("login");
-        return modelAndView;
+            managerService.addManager(manager);
+            modelAndView.setViewName("login");
+            return modelAndView;
     }
     /**
      * 跳转到管理员信息页面

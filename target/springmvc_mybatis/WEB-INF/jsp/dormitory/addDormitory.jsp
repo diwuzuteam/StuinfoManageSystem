@@ -51,7 +51,7 @@
                 data:{'dormMonitor':$("#dormMonitor").val()},
                 success:function (data) {
                     if (data.toString()=='NO'){
-                        alert("该学生已经是别的宿舍的宿舍长！")
+                        alert("该学生不存在或已经是别的宿舍的宿舍长！")
                     }else {
                         return;
                     }

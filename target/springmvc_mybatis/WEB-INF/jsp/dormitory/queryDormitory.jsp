@@ -103,7 +103,7 @@
 </script>
 <%--使用ajax异步删除后刷新--%>
 <script>
-    var ItemId = "Item5_2";
+    var ItemId = "Item5_3";
     function deleteReg(dormId){
         if (confirm("确定删除此宿舍信息？")){
             $.ajax({

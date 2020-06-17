@@ -34,7 +34,7 @@
                 <th>序号</th>
                 <th>宿舍号</th>
                 <th>宿舍类型</th>
-                <th>宿舍长学号</th>
+                <th>宿舍长</th>
                 <th class="col-lg-3">操作</th>
             </tr>
             </thead>
@@ -49,7 +49,7 @@
                     <td class="text-center">${pageInfo.count}</td>
                     <td>${dormitory.dormId}</td>
                     <td>${dormitory.dormNumber}</td>
-                    <td><a href="${pageContext.request.contextPath}/student/goViewStudent/${dormitory.dormMonitor}.action">${dormitory.dormMonitor}</a></td>
+                    <td><a href="${pageContext.request.contextPath}/student/goViewStudent/${dormitory.student.suId}.action">${dormitory.student.suName}</a></td>
                     <td>
                         <button class="btn  btn-xs btn-info"
                                 style="color: white;"><span

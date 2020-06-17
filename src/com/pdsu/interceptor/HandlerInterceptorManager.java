@@ -23,7 +23,12 @@ public class HandlerInterceptorManager implements HandlerInterceptor {
         //获取请求的url
         String url = request.getRequestURI();
         //判断url是否是公开地址（实际开发时，地址配置在文件中）
-        if (url.indexOf("toLogin.action")>=0){
+        if (url.indexOf("toLogin.action")>=0||
+                url.indexOf("managerRegister.action")>=0||
+                url.indexOf("exitUsername.action")>=0||
+                url.indexOf("checkIdAndName.action")>=0||
+                url.indexOf("updatePassword.action")>=0||
+                url.indexOf("checkPassword.action")>=0){
             //如果到登陆页面，放行
             return true;
         }

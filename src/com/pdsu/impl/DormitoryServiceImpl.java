@@ -2,11 +2,10 @@ package com.pdsu.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pdsu.mapper.DormStuMapper;
 import com.pdsu.mapper.DormitoryMapper;
-import com.pdsu.mapper.TeacherMapper;
-import com.pdsu.po.Course;
+import com.pdsu.po.DormQueryVo;
 import com.pdsu.po.Dormitory;
-import com.pdsu.po.Teacher;
 import com.pdsu.service.DormitoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +19,8 @@ import java.util.List;
 public class DormitoryServiceImpl implements DormitoryService {
     @Autowired
     private DormitoryMapper dormitoryMapper;
+    @Autowired
+    private DormStuMapper dormStuMapper;
     @Override
     public PageInfo<Dormitory> findAllDormitory(int page, int size) throws Exception {
         PageHelper.startPage(page, size);
@@ -58,6 +59,14 @@ public class DormitoryServiceImpl implements DormitoryService {
         PageHelper.startPage(page, size);
         List<Dormitory> list = dormitoryMapper.dynamicQuery(dormitory);
         PageInfo<Dormitory> pageInfo = new PageInfo<Dormitory>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public PageInfo<DormQueryVo> queryDormStu(int page, int size) {
+        PageHelper.startPage(page, size);
+        List<DormQueryVo> list = dormStuMapper.queryDormStu();
+        PageInfo<DormQueryVo> pageInfo = new PageInfo<DormQueryVo>(list);
         return pageInfo;
     }
 }

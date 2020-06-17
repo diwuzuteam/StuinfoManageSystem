@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pdsu.mapper.DormStuMapper">
+    <resultMap id="DormStuResultMap" type="com.pdsu.po.DormQueryVo" >
+        <id column="dorm_id" property="dormId" jdbcType="VARCHAR" />
+        <result column="dorm_number" property="dormNumber" jdbcType="VARCHAR" />
+        <result column="dorm_monitor" property="dormMonitor" jdbcType="VARCHAR" />
+        <association property="student" javaType="com.pdsu.po.Student">
+            <id column="su_id" property="suId" jdbcType="VARCHAR" />
+            <result column="su_name" property="suName" jdbcType="VARCHAR" />
+            <result column="su_sex" property="suSex" jdbcType="VARCHAR" />
+            <result column="su_dm" property="suDm" jdbcType="VARCHAR" />
+            <result column="su_class" property="suClass" jdbcType="VARCHAR" />
+            <result column="su_email" property="suEmail" jdbcType="VARCHAR" />
+            <result column="su_phone" property="suPhone" jdbcType="VARCHAR" />
+            <result column="su_pic" property="suPic" jdbcType="VARCHAR" />
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    dorm_id, dorm_number, dorm_monitor, su_id, su_name
+    </sql>
+    <select id="queryDormStu" resultMap="DormStuResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dormitory,student
+    where dormitory.dorm_monitor = student.su_id
+    </select>
+
+
+
+
+
+
+</mapper>

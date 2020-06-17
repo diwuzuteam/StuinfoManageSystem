@@ -1,7 +1,5 @@
 package com.pdsu.mapper;
 
-import com.github.pagehelper.PageInfo;
-import com.pdsu.po.Course;
 import com.pdsu.po.Dormitory;
 
 import java.util.List;

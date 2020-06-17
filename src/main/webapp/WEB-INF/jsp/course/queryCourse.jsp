@@ -2,7 +2,7 @@
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="xxy" uri="http://com.xxy/common/" %>
-<template:user_backend htmlTitle="查询教师信息" bodyTitle="查询教师信息">
+<template:user_backend htmlTitle="查询课程信息" bodyTitle="查询课程信息">
     <c:choose>
         <c:when test="${pageInfo.list.size()==0}">
             <h3>目前系统中没有该教师相关信息</h3>
@@ -107,7 +107,7 @@
 </script>
 <%--使用ajax异步删除后刷新--%>
 <script>
-    var ItemId = "Item4_2";
+    var ItemId = "Item4_3";
     function deleteReg(csNo){
         if (confirm("确定删除此课程信息？")){
             $.ajax({

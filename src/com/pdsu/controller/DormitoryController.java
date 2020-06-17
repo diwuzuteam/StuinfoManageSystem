@@ -2,9 +2,8 @@ package com.pdsu.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.pdsu.impl.DormitoryServiceImpl;
-import com.pdsu.po.Course;
-import com.pdsu.po.Dormitory;
-import com.pdsu.po.Teacher;
+import com.pdsu.impl.StudentServiceImpl;
+import com.pdsu.po.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class DormitoryController {
     @Autowired
     private DormitoryServiceImpl dormitoryService;
+    @Autowired
+    private StudentServiceImpl studentService;
     /**
      * 查询所有的宿舍信息
      */
@@ -29,7 +30,8 @@ public class DormitoryController {
                                         ModelAndView modelAndView) throws Exception {
 
         //默认每页记录
-        PageInfo<Dormitory> pageInfo = dormitoryService.findAllDormitory(page, size);
+        //PageInfo<Dormitory> pageInfo = dormitoryService.findAllDormitory(page, size);
+        PageInfo<DormQueryVo> pageInfo = dormitoryService.queryDormStu(page, size);
         modelAndView.addObject("pageInfo", pageInfo);
         modelAndView.setViewName("dormitory/listDormitory");
         return  modelAndView;
@@ -122,12 +124,17 @@ public class DormitoryController {
     @RequestMapping(value = "/exitDormMo",method = RequestMethod.POST)
     @ResponseBody
     public String exitDormMo(String dormMonitor) throws Exception {
-        Dormitory dormitory = dormitoryService.findDormByMo(dormMonitor);
+        Student student = studentService.findStudentByNo(dormMonitor);
         String msg = "";
-        if (dormitory != null){
-            msg = "NO";
-        }else{
-            msg = "OK";
+        if (student != null){
+            Dormitory dormitory = dormitoryService.findDormByMo(dormMonitor);
+            if (dormitory != null){
+                msg = "NO";
+            }else{
+                msg = "OK";
+            }
+            }else{
+                msg="NO";
         }
         return msg;
     }

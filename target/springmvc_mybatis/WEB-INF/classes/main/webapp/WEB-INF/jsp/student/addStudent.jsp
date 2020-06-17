@@ -95,7 +95,7 @@
                     if (data.toString() == "OK"){
                         alert("该用户已存在！")
                     }else {
-                        alert("ID可用！")
+                        //alert("ID可用！")
                     }
                 }
             });

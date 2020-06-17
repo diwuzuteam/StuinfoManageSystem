@@ -110,7 +110,7 @@
 </script>
 <%--使用ajax异步删除后刷新--%>
 <script>
-    var ItemId = "Item3_2";
+    var ItemId = "Item3_3";
     function deleteReg(thNo){
         if (confirm("确定删除此教师信息？")){
             $.ajax({
