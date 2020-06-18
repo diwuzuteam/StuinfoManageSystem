@@ -29,7 +29,7 @@ public class HandlerInterceptorManager implements HandlerInterceptor {
                 url.indexOf("checkIdAndName.action")>=0||
                 url.indexOf("updatePassword.action")>=0||
                 url.indexOf("checkPassword.action")>=0){
-            //如果到登陆页面，放行
+            //如果到以上界面，放行
             return true;
         }
         //判断session
